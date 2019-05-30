@@ -28,16 +28,19 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
   @Primary
   @ConfigurationProperties(prefix = "spring.datasource")
   public DataSource dataSource() {
+    // 配置数据源（注意，我使用的是 HikariCP 连接池），以上注解是指定数据源，否则会有冲突
     return DataSourceBuilder.create().build();
   }
 
   @Bean
   public TokenStore tokenStore() {
+    // 基于 JDBC 实现，令牌保存到数据
     return new JdbcTokenStore(dataSource());
   }
 
   @Bean
   public ClientDetailsService jdbcClientDetailsService() {
+    // 基于 JDBC 实现，需要事先在数据库配置客户端信息
     return new JdbcClientDetailsService(dataSource());
   }
 
@@ -55,11 +58,14 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 //        .authorizedGrantTypes("authorization_code")
 //        .scopes("all")
 //        .redirectUris("http://www.baidu.com");
+
+    // 数据库读取客户端配置
     clients.withClientDetails(jdbcClientDetailsService());
   }
 
   @Override
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    // 设置令牌
     endpoints.tokenStore(tokenStore());
   }
 }

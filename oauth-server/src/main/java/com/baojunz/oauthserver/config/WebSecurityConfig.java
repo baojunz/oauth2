@@ -15,12 +15,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   public BCryptPasswordEncoder passwordEncoder() {
+    // 设置默认的加密方式
     return new BCryptPasswordEncoder();
   }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+    // 在内存中创建用户并为密码加密
     auth.inMemoryAuthentication()
         .withUser("admin")
         .password(passwordEncoder().encode("123456"))
