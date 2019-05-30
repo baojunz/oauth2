@@ -18,7 +18,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 @Configuration
-@EnableAuthorizationServer
+@EnableAuthorizationServer // 声明一个认证服务器，当用此注解后，应用启动后将自动生成几个Endpoint
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
   @Autowired
@@ -51,7 +51,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
    */
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//    // 内存中配置客户端
+    // 内存中配置客户端
 //    clients.inMemory()
 //        .withClient("client")
 //        .secret(passwordEncoder.encode("secret"))
