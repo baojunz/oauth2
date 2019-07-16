@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
@@ -11,15 +11,3 @@ spring:
     jdbc-url: jdbc:mysql://localhost:3306/oauth2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
     username: root
     password: 123456
-
-# redis缓存
-redis:
-  # Redis开关/默认关闭
-  enabled: true
-  # Redis数据库索引（默认为0）
-  database: 0
-  # Redis服务器地址
-  host: localhost
-  # Redis服务器连接端口
-  port: 6379
-  password: redis-913.net
