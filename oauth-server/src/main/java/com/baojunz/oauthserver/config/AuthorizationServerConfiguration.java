@@ -49,7 +49,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     endpoints.authenticationManager(authenticationManager);
   }
 
-
   @Override
   public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
     /* 配置token获取合验证时的策略 */
